@@ -1,0 +1,84 @@
+# file      : libcmark-gfm/buildfile
+# copyright : Copyright (c) 2018-2019 Code Synthesis Ltd
+# license   : FreeBSD License; see accompanying COPYING file
+
+define inc: file
+inc{*}: extension = inc
+
+lib{cmark-gfm}: {h      }{* -version} \
+                {h      }{   version} \
+            src/{h inc c}{*    -main}
+
+windows = ($c.target.class == 'windows')
+
+gcc = ($c.class == 'gcc')
+
+# No need to include the generated version header into the distribution since
+# it is installed under a different name and so the correct one will always
+# be picked up.
+#
+h{version}: src/in{cmark-gfm_version} $src_root/manifest
+h{version}:
+{
+  in.symbol = '@'
+
+  PROJECT_VERSION_MAJOR = $upstream_version_major
+  PROJECT_VERSION_MINOR = $upstream_version_minor
+  PROJECT_VERSION_PATCH = $upstream_version_patch
+  PROJECT_VERSION_GFM   = $upstream_version_gfm
+}
+
+# Build options.
+#
+obja{*}: c.poptions += -DCMARK_GFM_STATIC_BUILD
+objs{*}: c.poptions += -DCMARK_GFM_SHARED_BUILD
+
+if! $windows
+  c.coptions += -fvisibility=hidden
+else
+  c.poptions += -DWIN32 -D_WINDOWS
+
+# Note that we add "-I$src_root" for the headers auto-generating machinery to
+# work properly.
+#
+c.poptions =+ "-I$out_root" "-I$src_root" "-I$src_base" "-I$src_base/src"
+
+if $gcc
+{
+  c.coptions += -pedantic
+
+  # Disable warnings that pop up with -Wextra. Upstream doesn't seem to care
+  # about these and it is not easy to disable specific warnings in a way that
+  # works across compilers/version (some -Wno-* options are only recognized in
+  # newer versions). There are still some warnings left that appear for
+  # certain platforms/compilers. We pass them through but disable treating
+  # them as errors.
+  #
+  c.coptions += -Wno-extra -Wno-error
+}
+
+# Export options.
+#
+lib{cmark-gfm}: cc.export.poptions = "-I$out_root"     \
+                                     "-I$src_root"     \
+                                     "-I$src_base"     \
+                                     "-I$src_base/src"
+
+liba{cmark-gfm}: cc.export.poptions += -DCMARK_GFM_STATIC
+libs{cmark-gfm}: cc.export.poptions += -DCMARK_GFM_SHARED
+
+# See bootstrap.build for details.
+#
+if $version.pre_release
+  lib{cmark-gfm}: bin.lib.version = @"-$version.project_id"
+else
+  lib{cmark-gfm}: bin.lib.version = @"-$abi_version"
+
+# Install the bare minimum of headers.
+#
+h{*}: install = false
+
+for h: src/{cmark-gfm.h cmark-gfm-extension_api.h} cmark-gfm_export.h
+  h{$h}@./$path.directory($h): install = include/
+
+h{version}: install = include/cmark-gfm_version.h

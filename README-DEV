@@ -1,0 +1,38 @@
+This document describes how cmark-gfm was packaged for build2. In particular,
+this understanding will be useful when upgrading to a new upstream version.
+
+The upstream package contains libcmark-gfm and libcmark-gfm-extensions
+libraries and the cmark-gfm program. Currently, we only package libraries and
+package them separately.
+
+We add the upstream package as a git submodule and symlink the required files
+and subdirectories into the build2 package subdirectories. Then, when required,
+we "overlay" the upstream with our own header/source files.
+
+Note that symlinking upstream submodule subdirectories into a build2 package
+subdirectory results in creating intermediate build files (.d, .o, etc) inside
+upstream directory while building the package in source tree. That's why we
+need to make sure that packages do not share upstream source files via
+subdirectory symlinks, not to also share the related intermediate files. If
+several packages need to compile the same upstream source file, then only one
+of them can symlink it via the parent directory while others must symlink it
+directly. We also add the `ignore = untracked` configuration option into
+.gitmodules to make sure that git ignores the intermediate build files under
+upstream/ subdirectory.
+
+Normally, when packaging a cmake-based project, we try to deduce the source
+file and compilation/linking option sets analyzing the root and
+feature/component/platform-specific CMakeLists.txt and .cmake files. In
+practice, however, that can be uneasy and error prone, so you may also need
+to refer to cmake-generated configuration files or, as a last resort, to see
+the actual compiler and linker command lines in the build log. If that's the
+case, you can configure/build the upstream package on the platform of interest
+running the following commands in the project root directory.
+
+On POSIX and in MinGW shell:
+
+$ make VERBOSE=1
+
+With MSVC:
+
+> nmake VERBOSE=1

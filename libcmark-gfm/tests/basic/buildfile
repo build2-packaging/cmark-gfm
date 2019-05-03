@@ -1,0 +1,7 @@
+# file      : tests/basic/buildfile
+# copyright : Copyright (c) 2018-2019 Code Synthesis Ltd
+# license   : FreeBSD License; see accompanying COPYING file
+
+import libs = libcmark-gfm%lib{cmark-gfm}
+
+exe{driver}: {h c}{**} $libs testscript

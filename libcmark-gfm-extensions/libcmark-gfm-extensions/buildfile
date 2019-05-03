@@ -1,0 +1,69 @@
+# file      : libcmark-gfm-extensions/buildfile
+# copyright : Copyright (c) 2018-2019 Code Synthesis Ltd
+# license   : FreeBSD License; see accompanying COPYING file
+
+import int_libs = libcmark-gfm%lib{cmark-gfm}
+
+lib{cmark-gfm-extensions}: {h c}{**} $int_libs
+
+windows = ($c.target.class == 'windows')
+
+gcc  = ($c.class == 'gcc')
+msvc = ($c.class == 'msvc')
+
+# Build options.
+#
+obja{*}: c.poptions += -DCMARK_GFM_EXTENSIONS_STATIC_BUILD
+objs{*}: c.poptions += -DCMARK_GFM_EXTENSIONS_SHARED_BUILD
+
+if! $windows
+  c.coptions += -fvisibility=hidden
+else
+  c.poptions += -DWIN32 -D_WINDOWS
+
+c.poptions =+ "-I$src_base" "-I$src_base/extensions"
+
+if $msvc
+{
+  # Disable warnings that pop up with /W3.
+  #
+  c.coptions += /wd4311
+}
+elif $gcc
+{
+  c.coptions += -pedantic
+
+  # Disable warnings that pop up with -Wextra. Upstream doesn't seem to care
+  # about these and it is not easy to disable specific warnings in a way that
+  # works across compilers/version (some -Wno-* options are only recognized in
+  # newer versions). There are still some warnings left that appear for
+  # certain platforms/compilers. We pass them through but disable treating
+  # them as errors.
+  #
+  c.coptions += -Wno-extra -Wno-error
+}
+
+# Export options.
+#
+lib{cmark-gfm-extensions}:
+{
+  cc.export.poptions = "-I$src_base" "-I$src_base/extensions"
+  cc.export.libs = $int_libs
+}
+
+liba{cmark-gfm-extensions}: cc.export.poptions += -DCMARK_GFM_EXTENSIONS_STATIC
+libs{cmark-gfm-extensions}: cc.export.poptions += -DCMARK_GFM_EXTENSIONS_SHARED
+
+# See bootstrap.build for details.
+#
+if $version.pre_release
+  lib{cmark-gfm-extensions}: bin.lib.version = @"-$version.project_id"
+else
+  lib{cmark-gfm-extensions}: bin.lib.version = @"-$abi_version"
+
+# Install the bare minimum of headers.
+#
+h{*}: install = false
+
+for h: extensions/cmark-gfm-core-extensions.h cmark-gfm-extensions_export.h
+  h{$h}@./$path.directory($h): install = include/

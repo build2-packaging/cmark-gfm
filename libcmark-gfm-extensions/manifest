@@ -1,0 +1,22 @@
+: 1
+name: libcmark-gfm-extensions
+
+# Note: remember to update summary below and build/bootstrap.build!
+#
+version: 0.29.0-a.0.z
+
+project: cmark-gfm
+summary: GitHub-flavored CommonMark extensions C library, version 0.29.0.gfm.0
+license: 2-clause BSD; FreeBSD License
+tags: github, markdown, extensions, cmark, commonmark, gfm, c, api
+description-file: README
+url: https://github.com/github/cmark-gfm
+src-url: https://git.build2.org/cgit/packaging/cmark-gfm/cmark-gfm/tree/libcmark-gfm-extensions/
+package-url: https://git.build2.org/cgit/packaging/cmark-gfm/
+email: packaging@build2.org ; Report issues at https://github.com/github/cmark-gfm/issues.
+package-email: packaging@build2.org ; Mailing list.
+build-error-email: builds@build2.org
+builds: all
+depends: * build2 >= 0.10.0-
+depends: * bpkg >= 0.10.0-
+depends: libcmark-gfm == $

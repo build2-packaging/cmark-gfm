@@ -1,0 +1,21 @@
+cmark-gfm is an extended version of cmark, the reference implementation of
+CommonMark parsing and rendering C library. In addition to libcmark,
+libcmark-gfm provides extensions management support. The GitHub Flavored
+Markdown extensions themselves are provided by libcmark-gfm-extensions.
+
+https://github.com/github/cmark-gfm
+
+This package contains the original libcmark-gfm-extensions library source code
+overlaid with the build2-based build system and packaged for the build2
+package manager (bpkg).
+
+See the INSTALL file for the prerequisites and installation instructions.
+
+Post questions, bug reports, or any other feedback about the library itself at
+https://github.com/github/cmark-gfm/issues. Send build system and
+packaging-related feedback to the packaging@build2.org mailing list (see
+https://lists.build2.org for posting guidelines, etc).
+
+The packaging of libcmark-gfm for build2 is tracked in a Git repository at:
+
+https://git.build2.org/cgit/packaging/cmark-gfm/

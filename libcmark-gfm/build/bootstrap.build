@@ -1,0 +1,50 @@
+# file      : build/bootstrap.build
+# copyright : Copyright (c) 2016-2019 Code Synthesis Ltd
+# license   : FreeBSD License; see accompanying COPYING file
+
+project = libcmark-gfm
+
+using version
+using config
+using test
+using install
+using dist
+
+# There is no documentation that describes versioning of cmark-gfm and its
+# upstream cmark package. However, we can probably conclude that the release
+# version has the <major>.<minor>.<patch>.gfm.<gfm-version> form, where the
+# first three numbers reflect the upstream version the downstream is rebased
+# upon and the first two numbers reflect the CommonMark Spec version the
+# projects conform to. Note that <gfm-version> is not always reset to zero
+# when the upstream version changes (e.g., 0.27.1.gfm.4 and 0.28.0.gfm.5) but
+# it is also not a "through-version" (e.g., 0.29.0.gfm.0). The cmark-gfm ABI
+# version is equal to the release version; it seems upstream doesn't bother
+# with compatibility at this stage, for example, renaming most of the
+# functions and headers in 0.28.3.gfm.15.
+#
+# Instead of dragging the fourth component around (and not being able to use a
+# lot of tooling support) we are going to merge the upstream version into a
+# three-component semver. We will start with repurposing the pre-release
+# component to store <gfm-version> as -a.(<gfm-version>+1). Later, when
+# upstream releases its first major version and provided they don't switch to
+# a more sensible versioning scheme (or if we decide to switch for some
+# reason), we will multiply the first three upstream components by 100 and add
+# <gfm-version> to one of them (always to patch for zero <major> but if/when
+# <major> becomes non-zero, we will have to decide based on the changes). We
+# also mention the upstream release in the package summary for information.
+#
+# Similar to upstream we use the <gfm-version> in the ABI version. When
+# rebasing on upstream we should check SOVERSION definition in their
+# CMakeLists.txt for any changes to the versioning policy.
+#
+if ($version.major == 0 && $version.minor == 29 && $version.patch == 0)
+{
+  upstream_version_major = 0
+  upstream_version_minor = 29
+  upstream_version_patch = 0
+  upstream_version_gfm = 0
+
+  abi_version = "$upstream_version_major.$upstream_version_minor.$upstream_version_patch.$upstream_version_gfm"
+}
+else
+  fail 'increment the ABI version?'

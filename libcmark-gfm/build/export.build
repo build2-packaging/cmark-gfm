@@ -1,0 +1,10 @@
+# file      : build/root.build
+# copyright : Copyright (c) 2018-2019 Code Synthesis Ltd
+# license   : FreeBSD License; see accompanying COPYING file
+
+$out_root/
+{
+  include libcmark-gfm/
+}
+
+export $out_root/libcmark-gfm/$import.target

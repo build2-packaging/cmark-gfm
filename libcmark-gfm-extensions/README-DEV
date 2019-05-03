@@ -1,0 +1,11 @@
+This document describes how libcmark-gfm-extensions was packaged for build2.
+In particular, this understanding will be useful when upgrading to a new
+upstream version. See ../README-DEV for general notes on cmark-gfm packaging.
+
+Symlink the required upstream files and directories into
+libcmark-gfm-extensions/:
+
+$ ln -s ../../upstream/extensions libcmark-gfm-extensions
+
+Create cmark-gfm-extensions_export.h defining CMARK_GFM_EXTENSIONS_EXPORT
+macro.
