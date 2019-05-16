@@ -56,7 +56,7 @@ libs{cmark-gfm-extensions}: cc.export.poptions += -DCMARK_GFM_EXTENSIONS_SHARED
 
 # See bootstrap.build for details.
 #
-if $version.pre_release
+if $version.snapshot
   lib{cmark-gfm-extensions}: bin.lib.version = @"-$version.project_id"
 else
   lib{cmark-gfm-extensions}: bin.lib.version = @"-$abi_version"

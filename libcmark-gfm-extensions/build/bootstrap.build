@@ -20,7 +20,7 @@ if ($version.major == 0 && $version.minor == 29 && $version.patch == 0)
   upstream_version_patch = 0
   upstream_version_gfm = 0
 
-  abi_version = "$upstream_version_major.$upstream_version_minor.$upstream_version_patch.$upstream_version_gfm"
+  abi_version = "$upstream_version_major.$upstream_version_minor.$(upstream_version_patch).gfm.$upstream_version_gfm"
 }
 else
   fail 'increment the ABI version?'
