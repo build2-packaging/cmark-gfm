@@ -1,14 +1,15 @@
 : 1
 name: libcmark-gfm
 
-# Note: remember to update summary below and build/bootstrap.build!
+# Note: remember to update build/bootstrap.build!
 #
-version: 0.29.0-a.1+2
+version: 0.29.0-a.1+3
+upstream-version: 0.29.0.gfm.0
 
 project: cmark-gfm
-summary: GitHub-flavored CommonMark parsing and rendering C library, version 0.29.0.gfm.0
+summary: GitHub-flavored CommonMark parsing and rendering C library
 license: BSD2; Simplified 2-clause BSD License.
-tags: github, markdown, cmark, commonmark, gfm, parser, renderer, c, api
+topics: C, CommonMark, Markdown, documentation generation
 description-file: README
 url: https://github.com/github/cmark-gfm
 src-url: https://git.build2.org/cgit/packaging/cmark-gfm/cmark-gfm/tree/libcmark-gfm/
@@ -17,5 +18,5 @@ email: packaging@build2.org ; Report issues at https://github.com/github/cmark-g
 package-email: packaging@build2.org ; Mailing list.
 build-error-email: builds@build2.org
 builds: all
-depends: * build2 >= 0.10.0-
-depends: * bpkg >= 0.10.0-
+depends: * build2 >= 0.11.0
+depends: * bpkg >= 0.11.0

@@ -30,8 +30,7 @@ using dist
 # a more sensible versioning scheme (or if we decide to switch for some
 # reason), we will multiply the first three upstream components by 100 and add
 # <gfm-version> to one of them (always to patch for zero <major> but if/when
-# <major> becomes non-zero, we will have to decide based on the changes). We
-# also mention the upstream release in the package summary for information.
+# <major> becomes non-zero, we will have to decide based on the changes).
 #
 # Similar to upstream we use the <gfm-version> in the ABI version. When
 # rebasing on upstream we should check SOVERSION definition in their
