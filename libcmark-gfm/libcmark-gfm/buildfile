@@ -18,7 +18,6 @@ gcc = ($c.class == 'gcc')
 # be picked up.
 #
 h{version}: src/in{cmark-gfm_version} $src_root/manifest
-h{version}:
 {
   in.symbol = '@'
 
