@@ -9,10 +9,6 @@ lib{cmark-gfm}: {h      }{* -version} \
                 {h      }{   version} \
             src/{h inc c}{*    -main}
 
-windows = ($c.target.class == 'windows')
-
-gcc = ($c.class == 'gcc')
-
 # No need to include the generated version header into the distribution since
 # it is installed under a different name and so the correct one will always
 # be picked up.
@@ -32,7 +28,7 @@ h{version}: src/in{cmark-gfm_version} $src_root/manifest
 obja{*}: c.poptions += -DCMARK_GFM_STATIC_BUILD
 objs{*}: c.poptions += -DCMARK_GFM_SHARED_BUILD
 
-if! $windows
+if ($c.target.class != 'windows')
   c.coptions += -fvisibility=hidden
 else
   c.poptions += -DWIN32 -D_WINDOWS
@@ -42,7 +38,7 @@ else
 #
 c.poptions =+ "-I$out_root" "-I$src_root" "-I$src_base" "-I$src_base/src"
 
-if $gcc
+if ($c.class == 'gcc')
 {
   c.coptions += -pedantic
 
