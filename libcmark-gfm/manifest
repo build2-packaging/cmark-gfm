@@ -3,7 +3,7 @@ name: libcmark-gfm
 
 # Note: remember to update build/bootstrap.build!
 #
-version: 0.29.0-a.1+5
+version: 0.29.0-a.1+6
 upstream-version: 0.29.0.gfm.0
 
 project: cmark-gfm
@@ -18,5 +18,5 @@ email: packaging@build2.org ; Report issues at https://github.com/github/cmark-g
 package-email: packaging@build2.org ; Mailing list.
 build-error-email: builds@build2.org
 builds: all
-depends: * build2 >= 0.11.0
-depends: * bpkg >= 0.11.0
+depends: * build2 >= 0.12.0
+depends: * bpkg >= 0.12.0
