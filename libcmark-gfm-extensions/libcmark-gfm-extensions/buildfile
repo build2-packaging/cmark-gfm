@@ -6,41 +6,39 @@ import int_libs = libcmark-gfm%lib{cmark-gfm}
 
 lib{cmark-gfm-extensions}: {h c}{**} $int_libs
 
-windows = ($c.target.class == 'windows')
-
-gcc  = ($c.class == 'gcc')
-msvc = ($c.class == 'msvc')
-
 # Build options.
 #
 obja{*}: c.poptions += -DCMARK_GFM_EXTENSIONS_STATIC_BUILD
 objs{*}: c.poptions += -DCMARK_GFM_EXTENSIONS_SHARED_BUILD
 
-if! $windows
+if ($c.target.class != 'windows')
   c.coptions += -fvisibility=hidden
 else
   c.poptions += -DWIN32 -D_WINDOWS
 
 c.poptions =+ "-I$src_base" "-I$src_base/extensions"
 
-if $msvc
+switch $c.class
 {
-  # Disable warnings that pop up with /W3.
-  #
-  c.coptions += /wd4311
-}
-elif $gcc
-{
-  c.coptions += -pedantic
+  case 'gcc'
+  {
+    c.coptions += -pedantic
 
-  # Disable warnings that pop up with -Wextra. Upstream doesn't seem to care
-  # about these and it is not easy to disable specific warnings in a way that
-  # works across compilers/version (some -Wno-* options are only recognized in
-  # newer versions). There are still some warnings left that appear for
-  # certain platforms/compilers. We pass them through but disable treating
-  # them as errors.
-  #
-  c.coptions += -Wno-extra -Wno-error
+    # Disable warnings that pop up with -Wextra. Upstream doesn't seem to care
+    # about these and it is not easy to disable specific warnings in a way
+    # that works across compilers/version (some -Wno-* options are only
+    # recognized in newer versions). There are still some warnings left that
+    # appear for certain platforms/compilers. We pass them through but disable
+    # treating them as errors.
+    #
+    c.coptions += -Wno-extra -Wno-error
+  }
+  case 'msvc'
+  {
+    # Disable warnings that pop up with /W3.
+    #
+    c.coptions += /wd4311
+  }
 }
 
 # Export options.
