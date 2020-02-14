@@ -1,0 +1,7 @@
+: 1
+name: libcmark-gfm
+version: 0.29.0-a.1+7
+upstream-version: 0.29.0.gfm.0
+project: cmark-gfm
+summary: GitHub-flavored CommonMark parsing and rendering C library
+license: BSD2; Simplified 2-clause BSD License.
