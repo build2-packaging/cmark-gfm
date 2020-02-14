@@ -1,6 +1,5 @@
 /*
  * file      : tests/basic/driver.c
- * copyright : Copyright (c) 2009-2019 Code Synthesis Tools CC
  * license   : FreeBSD License; see accompanying COPYING file
  */
 

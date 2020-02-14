@@ -1,5 +1,4 @@
 # file      : tests/basic/testscript
-# copyright : Copyright (c) 2016-2019 Code Synthesis Ltd
 # license   : FreeBSD License; see accompanying COPYING file
 
 $* '~~Hi~~ Hello *world*' >'<p><del>Hi</del> Hello <em>world</em></p>'

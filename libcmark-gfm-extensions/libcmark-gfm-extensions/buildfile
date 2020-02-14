@@ -1,5 +1,4 @@
 # file      : libcmark-gfm-extensions/buildfile
-# copyright : Copyright (c) 2018-2019 Code Synthesis Ltd
 # license   : FreeBSD License; see accompanying COPYING file
 
 import int_libs = libcmark-gfm%lib{cmark-gfm}

@@ -1,5 +1,4 @@
 # file      : libcmark-gfm/buildfile
-# copyright : Copyright (c) 2018-2019 Code Synthesis Ltd
 # license   : FreeBSD License; see accompanying COPYING file
 
 define inc: file
