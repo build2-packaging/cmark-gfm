@@ -1,5 +1,5 @@
-# file      : build/root.build
-# license   : FreeBSD License; see accompanying COPYING file
+# file      : build/export.build
+# license   : BSD 2-Clause "Simplified" License; see accompanying COPYING file
 
 $out_root/
 {

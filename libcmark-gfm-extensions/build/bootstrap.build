@@ -17,7 +17,7 @@ if ($version.major == 0 && $version.minor == 29 && $version.patch == 0)
   upstream_version_major = 0
   upstream_version_minor = 29
   upstream_version_patch = 0
-  upstream_version_gfm = 0
+  upstream_version_gfm = 2
 
   abi_version = "$upstream_version_major.$upstream_version_minor.$(upstream_version_patch).gfm.$upstream_version_gfm"
 }

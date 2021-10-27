@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-/*
- * For the semantics of the following macros refer to src/CMakeLists.txt.
+/* For the semantics of the following macros refer to upstream's
+ * src/CMakeLists.txt.
  */
 
 #define HAVE_STDBOOL_H

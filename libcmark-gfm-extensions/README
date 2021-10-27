@@ -16,6 +16,7 @@ https://github.com/github/cmark-gfm/issues. Send build system and
 packaging-related feedback to the packaging@build2.org mailing list (see
 https://lists.build2.org for posting guidelines, etc).
 
-The packaging of libcmark-gfm for build2 is tracked in a Git repository at:
+The packaging of libcmark-gfm-extensions for build2 is tracked in a Git
+repository at:
 
 https://git.build2.org/cgit/packaging/cmark-gfm/

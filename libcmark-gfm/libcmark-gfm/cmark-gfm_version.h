@@ -1,5 +1,4 @@
-/*
- * file      : libcmark-gfm/cmark-gfm_version.h
+/* file      : libcmark-gfm/cmark-gfm_version.h
  * license   : FreeBSD License; see accompanying COPYING file
  */
 

@@ -1,5 +1,4 @@
-/*
- * file      : tests/basic/driver.c
+/* file      : tests/basic/driver.c
  * license   : FreeBSD License; see accompanying COPYING file
  */
 
