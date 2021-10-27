@@ -9,7 +9,7 @@ upstream-version: 0.29.0.gfm.2
 project: cmark-gfm
 priority: security
 summary: GitHub-flavored CommonMark extensions C library
-license: BSD2; Simplified 2-clause BSD License.
+license: BSD-2-Clause AND MIT ; BSD 2-Clause "Simplified" License for the most of original files.
 topics: C, CommonMark, Markdown, documentation generation
 description-file: README
 url: https://github.com/github/cmark-gfm

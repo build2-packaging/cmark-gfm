@@ -1,5 +1,5 @@
 /* file      : libcmark-gfm-extensions/cmark-gfm-extensions_export.h -*- C -*-
- * license   : FreeBSD License; see accompanying COPYING file
+ * license   : BSD 2-Clause "Simplified" License; see accompanying COPYING file
  */
 
 #ifndef CMARK_GFM_EXTENSIONS_EXPORT_H

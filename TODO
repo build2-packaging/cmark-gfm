@@ -1,7 +1,5 @@
 On the revision:
 
-- Canonicalize the license in the package manifests.
-
 On the release:
 
 - Use legal{} target type for legal documentation (LICENSE, AUTHORS, etc).

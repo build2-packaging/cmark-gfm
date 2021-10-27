@@ -1,4 +1,4 @@
 # file      : tests/basic/testscript
-# license   : FreeBSD License; see accompanying COPYING file
+# license   : BSD 2-Clause "Simplified" License; see accompanying COPYING file
 
 $* 'Hello *world*' >'<p>Hello <em>world</em></p>'

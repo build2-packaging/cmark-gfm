@@ -1,5 +1,5 @@
 /* file      : tests/basic/driver.c
- * license   : FreeBSD License; see accompanying COPYING file
+ * license   : BSD 2-Clause "Simplified" License; see accompanying COPYING file
  */
 
 #include <stdio.h>

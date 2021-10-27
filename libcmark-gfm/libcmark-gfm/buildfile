@@ -1,5 +1,5 @@
 # file      : libcmark-gfm/buildfile
-# license   : FreeBSD License; see accompanying COPYING file
+# license   : BSD 2-Clause "Simplified" License; see accompanying COPYING file
 
 define inc: file
 inc{*}: extension = inc

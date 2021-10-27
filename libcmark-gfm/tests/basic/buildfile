@@ -1,5 +1,5 @@
 # file      : tests/basic/buildfile
-# license   : FreeBSD License; see accompanying COPYING file
+# license   : BSD 2-Clause "Simplified" License; see accompanying COPYING file
 
 import libs = libcmark-gfm%lib{cmark-gfm}
 
