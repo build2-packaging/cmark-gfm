@@ -1,0 +1,1 @@
+../../../upstream/extensions/strikethrough.c

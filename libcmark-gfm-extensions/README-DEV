@@ -5,7 +5,21 @@ upstream version. See ../README-DEV for general notes on cmark-gfm packaging.
 Symlink the required upstream files and directories into
 libcmark-gfm-extensions/:
 
-$ ln -s ../../upstream/extensions libcmark-gfm-extensions
+$ mkdir -p libcmark-gfm-extensions/extensions
+$ pushd libcmark-gfm-extensions/extensions
+$ ln -s ../../../upstream/extensions/*.{c,h} ./
+
+Also patch the broken cmark-gfm-core-extensions.h header (see the reported
+issue #244 for details):
+
+$ mv cmark-gfm-core-extensions.h cmark-gfm-core-extensions.h.orig
+$ cp cmark-gfm-core-extensions.h.orig cmark-gfm-core-extensions.h
+$ git apply fix-core-extensions-header.patch
+$ popd
+
+Note that patches are produced by commands similar to the following:
+
+$ git diff >fix-core-extensions-header.patch
 
 Create cmark-gfm-extensions_export.h defining CMARK_GFM_EXTENSIONS_EXPORT
 macro.

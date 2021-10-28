@@ -1,0 +1,22 @@
+diff --git a/libcmark-gfm-extensions/libcmark-gfm-extensions/extensions/cmark-gfm-core-extensions.h b/libcmark-gfm-extensions/libcmark-gfm-extensions/extensions/cmark-gfm-core-extensions.h
+index 0645915..69f1f31 100644
+--- a/libcmark-gfm-extensions/libcmark-gfm-extensions/extensions/cmark-gfm-core-extensions.h
++++ b/libcmark-gfm-extensions/libcmark-gfm-extensions/extensions/cmark-gfm-core-extensions.h
+@@ -7,9 +7,16 @@ extern "C" {
+ 
+ #include "cmark-gfm-extension_api.h"
+ #include "cmark-gfm-extensions_export.h"
+-#include "config.h" // for bool
+ #include <stdint.h>
+ 
++/* Fix the issue #244, including stdbool.h instead of (private) config.h.
++ *
++ * Note that here we assume that stdbool.h is available regardless if the C99
++ * standard is specified for the C compiler or not, which is true for all the
++ * platforms/compilers that we currently support.
++ */
++#include <stdbool.h>
++
+ CMARK_GFM_EXTENSIONS_EXPORT
+ void cmark_gfm_core_extensions_ensure_registered(void);
+ 
