@@ -4,11 +4,25 @@ version. See ../README-DEV for general notes on cmark-gfm packaging.
 
 Symlink the required upstream files and directories into libcmark-gfm/:
 
-$ ln -s ../../upstream/src libcmark-gfm
+$ mkdir -p libcmark-gfm/src
+$ pushd libcmark-gfm/src
+$ ln -s ../../../upstream/src/*.{c,h,inc,in} ./
 
-Note that we unable to generate cmark-gfm_version.h directly from the template
-as it is included as "cmark-gfm_version.h" in upstream's source code, which
-makes impossible using the header-generating machinery. That's why we create
+Also patch the HTML renderer not to use the empty attribute syntax (see the
+reported issue #245 for details):
+
+$ mv html.c html.c.orig
+$ cp html.c.orig html.c
+$ git apply fix-html-renderer.patch
+$ popd
+
+Note that patches are produced by commands similar to the following:
+
+$ git diff >fix-html-renderer.patch
+
+We unable to generate cmark-gfm_version.h directly from the template, since it
+is included as "cmark-gfm_version.h" in upstream's source code, which makes
+impossible using the header-generating machinery. That's why we create
 libcmark-gfm/cmark-gfm_version.h that includes <libcmark-gfm/version.h> that
 we auto-generate from upstream's src/cmark-gfm_version.h.in.
 
