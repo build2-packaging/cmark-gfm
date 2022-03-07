@@ -1,0 +1,9 @@
+: 1
+name: libcmark-gfm-extensions
+version: 0.29.0-a.4
+upstream-version: 0.29.0.gfm.3
+project: cmark-gfm
+priority: security
+summary: GitHub-flavored CommonMark extensions C library
+license: BSD-2-Clause AND MIT; BSD 2-Clause "Simplified" License for the most\
+ of original files.
