@@ -46,7 +46,12 @@ if ($c.class == 'gcc')
   # works across compilers/version (some -Wno-* options are only recognized in
   # newer versions).
   #
+  # @@ TMP: try to re-enable on next release.
+  #
   c.coptions += -Wno-extra
+
+  if ($c.id.type == 'clang' && $c.version.major >= 15)
+    c.coptions += -Wno-strict-prototypes
 }
 
 # Export options.

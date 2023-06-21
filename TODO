@@ -3,3 +3,9 @@ On the revision:
 On the release:
 
   Note that this requires bumping build2 version requirement to 0.15.0.
+
+Additional (permanent) notes:
+
+- Review '@@ TMP' notes.
+
+- Add/remove 'priority: security' manifest value, if required.
